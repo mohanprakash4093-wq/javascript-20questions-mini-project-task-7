@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 20 - API Request Completed</title>
+</head>
+<body>
+
+    <h1>Men's Clothing Products</h1>
+
+    <div class="api">Loading...</div>
+
+    <div id="products"></div>
+
+    <script>
+
+        let api = document.querySelector(".api");
+
+        fetch("https://fakestoreapi.com/products/category/men's%20clothing")
+        .then(response => response.json())
+        .then(data => {
+
+            api.innerHTML = "API data successfully loaded!";
+
+            let products = document.querySelector("#products");
+
+            data.forEach(product => {
+
+                let div = document.createElement("div");
+
+                div.innerHTML = `
+                    <h2>${product.title}</h2>
+                    <p>Price: $${product.price}</p>
+                `;
+
+                products.appendChild(div);
+
+            });
+
+        })
+        .catch(error => {
+
+            api.innerHTML = "Error loading API data";
+
+            console.log("Error:", error);
+
+        })
+        .finally(() => {
+
+            api.innerHTML += "<p>API request completed</p>";
+
+        });
+
+    </script>
+
+</body>
+</html>

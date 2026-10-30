@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 14 - Product Cards</title>
+</head>
+<body>
+
+    <h1>Men's Clothing Product Cards</h1>
+
+    <div id="products"></div>
+
+    <script>
+
+        fetch("https://fakestoreapi.com/products/category/men's%20clothing")
+        .then(response => response.json())
+        .then(data => {
+
+            let products = document.querySelector("#products");
+
+            data.forEach(product => {
+
+                let div = document.createElement("div");
+
+                div.className = "card";
+
+                div.innerHTML = `
+                    <h2>${product.title}</h2>
+                    <p>Price: $${product.price}</p>
+                `;
+
+                products.appendChild(div);
+
+            });
+
+        })
+        .catch(error => {
+            console.log("Error:", error);
+        });
+
+    </script>
+
+</body>
+</html>

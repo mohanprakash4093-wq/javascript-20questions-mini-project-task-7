@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 9 - Uppercase Product Titles</title>
+</head>
+<body>
+
+    <h1>Men's Clothing Product Titles</h1>
+
+    <div id="products"></div>
+
+    <script>
+
+        fetch("https://fakestoreapi.com/products/category/men's%20clothing")
+        .then(response => response.json())
+        .then(data => {
+
+            let products = document.querySelector("#products");
+
+            data.forEach(product => {
+
+                let heading = document.createElement("h2");
+
+                heading.innerHTML = product.title.toUpperCase();
+
+                products.appendChild(heading);
+
+            });
+
+        })
+        .catch(error => {
+            console.log("Error:", error);
+        });
+
+    </script>
+
+</body>
+</html>

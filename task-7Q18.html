@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 18 - API Success Message</title>
+</head>
+<body>
+
+    <h1>API Data Loading</h1>
+
+    <div class="api"></div>
+
+    <div id="products"></div>
+
+    <script>
+
+        fetch("https://fakestoreapi.com/products/category/men's%20clothing")
+        .then(response => response.json())
+        .then(data => {
+
+            let api = document.querySelector(".api");
+
+            api.innerHTML = "API data successfully loaded!";
+
+            let products = document.querySelector("#products");
+
+            data.forEach(product => {
+
+                let heading = document.createElement("h2");
+
+                heading.innerHTML = product.title;
+
+                products.appendChild(heading);
+
+            });
+
+        })
+        .catch(error => {
+            console.log("Error:", error);
+        });
+
+    </script>
+
+</body>
+</html>

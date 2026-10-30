@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 8 - Product Categories</title>
+</head>
+<body>
+
+    <h1>Men's Clothing Product Categories</h1>
+
+    <div id="products"></div>
+
+    <script>
+
+        fetch("https://fakestoreapi.com/products/category/men's%20clothing")
+        .then(response => response.json())
+        .then(data => {
+
+            let products = document.querySelector("#products");
+
+            data.forEach(product => {
+
+                let heading = document.createElement("h3");
+
+                heading.innerHTML = product.category;
+
+                products.appendChild(heading);
+
+            });
+
+        })
+        .catch(error => {
+            console.log("Error:", error);
+        });
+
+    </script>
+
+</body>
+</html>

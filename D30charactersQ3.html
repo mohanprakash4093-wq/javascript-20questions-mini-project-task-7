@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 3 - Product Titles</title>
+</head>
+<body>
+
+    <h1>Product Titles (First 30 Characters)</h1>
+
+    <div id="products"></div>
+
+    <script>
+
+        fetch("https://fakestoreapi.com/products")
+        .then(response => response.json())
+        .then(data => {
+
+            let products = document.querySelector("#products");
+
+            data.forEach(product => {
+
+                let heading = document.createElement("h2");
+
+                heading.innerHTML = product.title.slice(0, 30);
+
+                products.appendChild(heading);
+
+            });
+
+        })
+        .catch(error => {
+            console.log("Error:", error);
+        });
+
+    </script>
+
+</body>
+</html>

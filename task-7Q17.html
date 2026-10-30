@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 17 - Product Title and Category</title>
+</head>
+<body>
+
+    <h1>Men's Clothing Products</h1>
+
+    <div id="products"></div>
+
+    <script>
+
+        fetch("https://fakestoreapi.com/products/category/men's%20clothing")
+        .then(response => response.json())
+        .then(data => {
+
+            let products = document.querySelector("#products");
+
+            data.forEach(product => {
+
+                let div = document.createElement("div");
+
+                div.innerHTML = `
+                    <h2>Title: ${product.title}</h2>
+                    <h3>Category: ${product.category}</h3>
+                `;
+
+                products.appendChild(div);
+
+            });
+
+        })
+        .catch(error => {
+            console.log("Error:", error);
+        });
+
+    </script>
+
+</body>
+</html>

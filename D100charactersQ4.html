@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 4 - Product Description</title>
+</head>
+<body>
+
+    <h1>Product Descriptions (First 100 Characters)</h1>
+
+    <div id="products"></div>
+
+    <script>
+
+        fetch("https://fakestoreapi.com/products")
+        .then(response => response.json())
+        .then(data => {
+
+            let products = document.querySelector("#products");
+
+            data.forEach(product => {
+
+                let paragraph = document.createElement("p");
+
+                paragraph.innerHTML = product.description.slice(0, 100);
+
+                products.appendChild(paragraph);
+
+            });
+
+        })
+        .catch(error => {
+            console.log("Error:", error);
+        });
+
+    </script>
+
+</body>
+</html>
